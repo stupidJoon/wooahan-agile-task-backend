@@ -17,9 +17,11 @@ module.exports.selectNumber = async () => {
 module.exports.addNumber = async (number) => {
   const connection = await pool.getConnection(async conn => conn);
   await connection.query('UPDATE number SET number = (SELECT number FROM number) + ?', [number]);
+  connection.release();
 }
 
 module.exports.updateNumber = async (number) => {
   const connection = await pool.getConnection(async conn => conn);
   await connection.query('UPDATE number SET number = ?', [number]);
+  connection.release();
 }
