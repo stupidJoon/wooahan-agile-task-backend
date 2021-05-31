@@ -1,15 +1,17 @@
+const db = require('./db.js');
+
 module.exports = {
-  number: 0,
-  getNumber: function() {
-    return this.number;
+  getNumber: async function() {
+    const number = await db.selectNumber();
+    return number;
   },
-  addNumber: function(operand) {
-    this.number += operand;
+  addNumber: async function(operand) {
+    await db.addNumber(operand);
   },
-  modifyNumber: function(number) {
-    this.number = number;
+  modifyNumber: async function(number) {
+    await db.updateNumber(number);
   },
-  resetNumber: function() {
-    this.number = 0;
+  resetNumber: async function() {
+    await db.updateNumber(0);
   }
 }

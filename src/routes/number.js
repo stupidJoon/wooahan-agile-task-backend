@@ -1,10 +1,10 @@
 const express = require('express');
-
-const router = express.Router();
 const number = require('../models/number.js');
 
-router.get('/', (req, res) => {
-  res.json(number.getNumber());
+const router = express.Router();
+
+router.get('/', async (req, res) => {
+  res.json(await number.getNumber());
 });
 
 router.post('/', (req, res) => {
